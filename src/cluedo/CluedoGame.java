@@ -5,16 +5,21 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
-import jdk.nashorn.internal.runtime.options.Options;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class CluedoGame {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel; // container inside JFrame
+import javax.swing.JTextField; //box to type things inside (one line) - can edit
+import javax.swing.JTextArea; //box to type things inside (multiple lines) - can edit
+import javax.swing.JLabel; //text that you CANNOT edit
+import javax.swing.JComboBox; //drop down select box
 
-	
+public class CluedoGame extends JFrame{
+
 	//Array of all the possible inputs from the player during their turn for easy error checking
 	private List<String> turnOptions = new ArrayList<String>();
 	private final int minPlayers = 3;
@@ -161,8 +166,34 @@ public class CluedoGame {
 			new Position(14,14),
 			new Position(14,15)};
 	
+	//GUI STUFF
+	JPanel panel = new JPanel();
+	JButton btnStart = new JButton("Start");
+	JButton btnMove = new JButton("Move");
+	JButton btnSuggest = new JButton("Suggestion");
+	JButton btnAccuse = new JButton("Accuse");
+	
+	JTextField t = new JTextField("TextField");
+	JTextArea ta = new JTextArea("Text\nArea", 200,40);
 	
 	public CluedoGame() {
+		//GUI construct
+		super("Cluedo GUI");
+		setSize(600,600); //size of window
+		setResizable(true); //resizable window
+		
+		panel.add(btnStart); // add button to panel
+		panel.add(btnMove);
+		panel.add(btnSuggest);
+		panel.add(btnAccuse);
+		//checklist tab?
+		panel.add(t);
+		panel.add(ta);
+		
+		add(panel); //add panel to JFrame
+		
+		setVisible(true); //shows JPanel
+		
 		populateRooms();
 		this.b = new Board();
 		Scanner s = new Scanner(System.in);
