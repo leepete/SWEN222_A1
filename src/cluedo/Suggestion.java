@@ -1,16 +1,6 @@
-
 package cluedo;
 
 public class Suggestion {
-<<<<<<< HEAD
-	
-	Weapon weapon;
-	Character character;
-	Room room;
-	
-	public Suggestion(Weapon weapon, Character character, Room room) {
-		this.weapon = weapon;
-=======
 
 	private String weapon;
 	private String character;
@@ -18,7 +8,6 @@ public class Suggestion {
 	private String[] cards = new String[3];
 
 	public Suggestion(String room, String weapon, String character) {
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 		this.room = room;
 		this.weapon = weapon;
 		this.character = character;
@@ -26,8 +15,6 @@ public class Suggestion {
 		cards[1] = weapon;
 		cards[2] = character;
 	}
-<<<<<<< HEAD
-=======
 
 	public boolean isValid() {
 		return (this.room != null && this.character != null && this.weapon != null);
@@ -51,7 +38,6 @@ public class Suggestion {
 	public String getCharacter() {
 		return character;
 	}
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	
 	public String toString() {
 		return String.format("R: %s W: %s C: %s", room.toString(), weapon.toString(), character.toString() );

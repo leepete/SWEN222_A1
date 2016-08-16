@@ -4,14 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.ArrayList;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.util.Arrays;
-=======
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-=======
-import java.util.Arrays;
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -26,32 +19,11 @@ public class Player {
 	private int remainingSteps;
 	private Position position;
 	private Board board;
-<<<<<<< HEAD
-<<<<<<< HEAD
-	//private Map<String, Position> placeMap;
-	private Set<Card> hand = new HashSet<Card>();
-
-	public Player(Character character, Board board, int id) {
-=======
 	public Room sameRoom;
 
 	private CluedoGame game;
 	//private Map<String, Position> placeMap;
 	private List<String> hand = new ArrayList<String>();
-	
-	public Player(Character character, Board board, CluedoGame game, int id) {
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
-		this.character = character;
-		this.id = id;
-		this.board = board;
-		position = this.character.getStart();
-	}
-<<<<<<< HEAD
-
-=======
-	private CluedoGame game;
-	//private Map<String, Position> placeMap;
-	private Set<Card> hand = new HashSet<Card>();
 	
 	public Player(Character character, Board board, CluedoGame game, int id) {
 		this.character = character;
@@ -60,10 +32,6 @@ public class Player {
 		this.game = game;
 		position = this.character.getStart();
 	}
-	
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-=======
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	/**
 	 * Returns the room that the player is in and null if they aren't in one
 	 * @return
@@ -93,15 +61,7 @@ public class Player {
 	 */
 	public Position getPosition() {
 		return position;
-<<<<<<< HEAD
-	}
-<<<<<<< HEAD
-
-=======
-	
-=======
 	}	
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	
 	/**
 	 * Sets the position of the player
@@ -113,58 +73,19 @@ public class Player {
 		}
 	}
 	
-<<<<<<< HEAD
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-=======
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	/**
 	 * Takes an input key from the user and attempts to move in that direction
 	 * @return
 	 */
 	public void move(Scanner s) {
 		remainingSteps = rollDice();
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-=======
-
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 		while(remainingSteps > 0){
 			System.out.println(String.format("Moves remaining: %d. Input a direction: 'W' 'A' 'S' 'D' or 'STOP'", remainingSteps));
 			System.out.println(position.toString());
 			String key = s.next().toUpperCase(); //Take the first string from the user
 			s.nextLine();//End the line
 			switch(key){
-<<<<<<< HEAD
-<<<<<<< HEAD
-			case "W":
-				if(goUp())
-					remainingSteps--;
-				break;
-			case "A":
-				if(goLeft())
-					remainingSteps--;
-				break;
-			case "S":
-				if(goDown())
-					remainingSteps--;
-				break;
-			case "D":
-				if(goRight())
-					remainingSteps--;	
-				break;
-			case "STOP":
-				remainingSteps = 0;
-				break;
-			default: {
-				System.out.println("Invalid move input please try again");
-			}
-=======
-=======
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 				case "W":
 					if(goUp())
 						remainingSteps--;
@@ -187,10 +108,6 @@ public class Player {
 				default: {
 					System.out.println("Invalid move input please try again");
 				}
-<<<<<<< HEAD
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-=======
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 			}
 		}
 		
@@ -212,21 +129,12 @@ public class Player {
 	public void useStairs() {
 		Room oldRoom = room;
 		room = room.getStairRoom();
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-		//Visually move to the new room
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-		System.out.println(String.format("DEBUG: player used stairs from %s and is now in %s", oldRoom, room));
-=======
 
 		
 		Position space = room.getSpaces()[id-1];
 		board.teleport(this, position, space);
 		board.printBoard();
 		System.out.println(String.format("Used stairs from %s, and is now in %s", oldRoom, room));
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 		//Make suggestion
 	}
 
@@ -250,29 +158,13 @@ public class Player {
 	public void exitRoom(Scanner s) {
 		Position exitMat = room.placemats[0]; //Initialise to make compiler happy 
 		Map<String, Position> pM = room.placeMap;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-=======
-
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 		//Get all the possible doors from the room and map these to the letter shown on the map (determined from index)
 		/*placeMap = new HashMap<String, Position>();
 		for(int i = 0; i < room.placemats.length; i++) {
 			placeMap.put(String.valueOf(('A'+i)), room.placemats[i]);
 		}*/
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-=======
-
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 		List<Position> blockMats = board.getBlockedMats(room);
 		//Remove all the blocked placemats from the map of the available mats 
 		for(Position p : blockMats) {
@@ -280,16 +172,7 @@ public class Player {
 				pM.values().remove(p);
 			}
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-
-=======
-		
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-=======
-
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 		//if there is no unblocked mats then END TURN
 		if(pM.isEmpty()) {
 			//END TURN
@@ -305,25 +188,13 @@ public class Player {
 		}
 		System.out.println(String.format("Exiting from %s", room.toString(), exitMat.x, exitMat.y));
 		room = null; //No longer in a room
-<<<<<<< HEAD
-<<<<<<< HEAD
-		//use the exitmat probably like board.moveplayer or seomthign
-	}
 
-=======
-=======
-
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 		//Leave the room
 		board.teleport(this, position, exitMat);
 		position = exitMat;
 		game.turnInput(s, this);
 	}
 	
-<<<<<<< HEAD
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-=======
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	/**
 	 * Asks the player which exit they would like to leave the room from, from the available options
 	 * and returns the position of the placemat
@@ -344,27 +215,9 @@ public class Player {
 				mat = pM.get(input);
 				valid = true;
 			}
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-			System.out.println("Invalid exit input please try again");
-
-		}
-		return mat;
-
-=======
-			
-			System.out.println("Invalid exit input please try again");
-			
-		}
-		return mat;
-		
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-=======
 			System.out.println("Invalid exit input please try again");
 		}
 		return mat;
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	}
 	
 	/**
@@ -374,16 +227,8 @@ public class Player {
 	 * @param guess
 	 * @return
 	 */
-<<<<<<< HEAD
-	public void accuse(Scanner s) {
-		boolean isValid = false;
-
-		System.out.println("DEBUG: accuse called");
-<<<<<<< HEAD
-=======
 	public Suggestion makeSuggestion(Scanner s, boolean guess) {
 		boolean valid = false;
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 
 		String input;
 		Character c = null;
@@ -468,18 +313,6 @@ public class Player {
 		}
 	}
 
-<<<<<<< HEAD
-
-
-=======
-		System.out.println("Something about asking for a room/weapon/character");
-	}
-	
-	
-	
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-=======
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	/**
 	 * Sets the players hand
 	 * @param hand
@@ -487,25 +320,6 @@ public class Player {
 	public void addCard(String card) {
 		hand.add(card);
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-	/**
-	 * Returns the players hand as a string
-	 * @return
-	 */
-	public String handToString() {
-		String s = "";
-		for(Card c : hand) {
-			s += c.toString() + ", ";
-		}
-		return s;
-	}
-=======
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 
 	/**
 	 * Returns true if the player is still in the game
@@ -519,25 +333,8 @@ public class Player {
 	 * Returns true if was successful
 	 * @return
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-	private boolean goUp() {
-		Position newP;
-		if((newP = board.movePlayer(position, new Position(position.x,position.y-1), this)) != null) {
-			position = newP;
-=======
-	private boolean goUp(){
-		Position newP;
-		if((newP = board.movePlayer(position, new Position(position.x,position.y-1), this)) != null) {
-			//position = newP;
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-			return true;
-		}
-		return false;
-=======
 	private boolean goUp(){
 		 return board.movePlayer(position, new Position(position.x,position.y-1), this);
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	}
 	
 	/**
@@ -545,52 +342,16 @@ public class Player {
 	 * Returns true if was successful
 	 * @return
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-	private boolean goLeft() {
-		//Note - Move validity is determined from the board class
-		Position newP;
-		if((newP = board.movePlayer(position, new Position(position.x-1, position.y), this)) != null) {
-			position = newP;
-=======
-	private boolean goLeft(){
-		//Note - Move validity is determined from the board class
-		Position newP;
-		if((newP = board.movePlayer(position, new Position(position.x-1, position.y), this)) != null) {
-			//position = newP;
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-			return true;
-		}
-		return false;
-=======
 	private boolean goLeft(){
 		return board.movePlayer(position, new Position(position.x-1, position.y), this);
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	}
 	/**
 	 * Attempts to move the player right 1 space
 	 * Returns true if was successful
 	 * @return
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-	private boolean goRight() {
-		Position newP;
-		if((newP = board.movePlayer(position, new Position(position.x+1, position.y), this)) != null) {
-			position = newP;
-=======
-	private boolean goRight(){
-		Position newP;
-		if((newP = board.movePlayer(position, new Position(position.x+1, position.y), this)) != null) {
-			//position = newP;
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-			return true;
-		}
-		return false;
-=======
 	private boolean goRight(){
 		return board.movePlayer(position, new Position(position.x+1, position.y), this);
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	}
 	
 	/**
@@ -598,34 +359,14 @@ public class Player {
 	 * Returns true if was successful
 	 * @return
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-	private boolean goDown() {
-		Position newP;
-		if((newP = board.movePlayer(position, new Position(position.x, position.y+1), this)) != null) {
-			position = newP;
-			return true;
-		}
-		return false;
-=======
-=======
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	private boolean goDown(){
 		return board.movePlayer(position, new Position(position.x, position.y+1), this);
 	}
 	
-<<<<<<< HEAD
-	public char toChar() {
-		return Integer.toString(id).charAt(0);
->>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
-	}
-
-=======
 	/**
 	 * Returns the player number of this player as a character
 	 * @return
 	 */
->>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	public char toChar() {
 		return Integer.toString(id).charAt(0);
 	}
