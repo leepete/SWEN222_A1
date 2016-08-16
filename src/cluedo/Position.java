@@ -13,8 +13,10 @@ public class Position {
 	public String toString(){
 		return "X: " + x + " Y: " + y;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	}
-
 
 
 	@Override
@@ -43,6 +45,7 @@ public class Position {
 		return true;
 	}
 }
+<<<<<<< HEAD
 =======
 	}
 
@@ -75,3 +78,6 @@ public class Position {
 	}
 }
 >>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
+=======
+
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752

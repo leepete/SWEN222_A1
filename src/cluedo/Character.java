@@ -49,6 +49,7 @@ public class Character extends Card{
 			return false;
 		return true;
 	}
+<<<<<<< HEAD
 	
 	
 <<<<<<< HEAD
@@ -56,3 +57,6 @@ public class Character extends Card{
 =======
 }
 >>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
+=======
+}
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752

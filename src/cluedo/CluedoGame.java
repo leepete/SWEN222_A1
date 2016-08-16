@@ -1,8 +1,12 @@
 package cluedo;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+
+import jdk.nashorn.internal.runtime.options.Options;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,13 +17,18 @@ public class CluedoGame {
 	
 	//Array of all the possible inputs from the player during their turn for easy error checking
 	private List<String> turnOptions = new ArrayList<String>();
-	private final int minPlayers = 1; //DEBUGGING +++++++++++++++++++++++++++++++++++++++++++
+	private final int minPlayers = 3;
 	private final int maxPlayers = 6;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	private static final int numRooms = 9;
 =======
 	private final int numRooms = 9;
 >>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
+=======
+
+	private static final int numRooms = 9;
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	
 	//List of the players in the game
 	public List<Player> players = new ArrayList<Player>();
@@ -57,11 +66,17 @@ public class CluedoGame {
 			new Weapon("SPANNER")};
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public static  Room[] roomsArray = new Room[numRooms];
 =======
 	public Room[] roomsArray = new Room[numRooms];
 >>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
 	
+=======
+	public static Room[] roomsArray = new Room[numRooms];
+	public static Room cellar = new Room("CELLAR", new Position[0]);
+
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	public static Map<Position, Room> placemats = new HashMap<Position, Room>();
 	
 	private final Position[] kitchenPlacemats = {
@@ -92,7 +107,10 @@ public class CluedoGame {
 			new Position(18, 21)};
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	//Arrays holding the positions of where the player characters will be shown while they are in the rooms
 	private final Position[] kitchenSpaces = {
 			new Position(2,3),
@@ -157,9 +175,19 @@ public class CluedoGame {
 			new Position(21,24),
 			new Position(22,24),
 			new Position(23,24)};
+	private final Position[] cellarSpaces = {
+			new Position(12,13),
+			new Position(12,14),
+			new Position(12,15),
+			new Position(14,13),
+			new Position(14,14),
+			new Position(14,15)};
 	
 	
+<<<<<<< HEAD
 >>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
+=======
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	public CluedoGame() {
 		populateRooms();
 		this.b = new Board();
@@ -188,6 +216,7 @@ public class CluedoGame {
 		lounge.setStairRoom(conservatory);
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 		int i = 0;
 		//Put the rooms in the array
 		roomsArray[i] = kitchen;
@@ -201,15 +230,37 @@ public class CluedoGame {
 		roomsArray[i] = study;
 		mapPlacemats(roomsArray[i]);
 		roomsArray[i++].generateDoorLabels();
+=======
+
+		kitchen.setSpaces(kitchenSpaces);
+		study.setSpaces(studySpaces);
+		conservatory.setSpaces(conservatorySpaces);
+		lounge.setSpaces(loungeSpaces);
+		ballroom.setSpaces(ballSpaces);
+		billiardroom.setSpaces(billiardSpaces);
+		library.setSpaces(librarySpaces);
+		hall.setSpaces(hallSpaces);
+		diningroom.setSpaces(diningSpaces);
 		
-		roomsArray[i] = lounge;
-		mapPlacemats(roomsArray[i]);
-		roomsArray[i++].generateDoorLabels();
+		roomsArray[0] = kitchen;
+		roomsArray[1] = conservatory;
+		roomsArray[2] = study;
+		roomsArray[3] = lounge;
+		roomsArray[4] = ballroom;
+		roomsArray[5] = billiardroom;
+		roomsArray[6] = library;
+		roomsArray[7] = hall;
+		roomsArray[8] = diningroom;
+		for(int i = 0; i < roomsArray.length; i++) {
+			mapPlacemats(roomsArray[i]);
+			roomsArray[i].generateDoorLabels();
+		}
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 		
-		roomsArray[i] = ballroom;
-		mapPlacemats(roomsArray[i]);
-		roomsArray[i++].generateDoorLabels();
 		
+		//Cellar is a special room where the dead people go
+		
+<<<<<<< HEAD
 		roomsArray[i] = billiardroom;
 		mapPlacemats(roomsArray[i]);
 		roomsArray[i++].generateDoorLabels();
@@ -250,6 +301,9 @@ public class CluedoGame {
 			roomsArray[i].generateDoorLabels();
 		}
 >>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
+=======
+		cellar.setSpaces(cellarSpaces);
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	}
 	
 	/**
@@ -272,25 +326,35 @@ public class CluedoGame {
 	 */
 	public void startGame(Scanner s) {
 		resetGame();
-		
+		System.out.println("Welcome to Cluedo, in this game you must solve the murder by correctly deducing the CHARACTER the WEAPON and the ROOM");
+		System.out.println("Your player number will be displayed on the board so don't forget it!");
+		System.out.println("Any inputs you give are case insensitive but very strict on spelling!");
+		System.out.println("The '+' tiles on the board represent walkable corridoors while the 'x' tiles are placemats which are located outside each door indicated by an arrow");
+		System.out.println("To enter a room you must walk into the arrow while standing on its placemat. '#' and '=' and other players cannot be walked over so don't try!");
+		System.out.println("Finially, in the corner rooms you will find a letter 'Z' or 'Y', these are secret(ish) stairways leading to the room in the opposite corner");
 		//Get number of players
 		numPlayers = getNumPlayers(s);
 		int i = 1;
 		while(i <= numPlayers) {
-		
+			Player p;
 			System.out.println(String.format("Player %d, please enter the character you wish to play as:", i));
 			for(Character c : availableChars.values()) {
 				System.out.println(c.toString());
 			}
 			String plCharChoice = s.nextLine().toUpperCase();
-			System.out.println("DEBUG: plcharchoice: " + plCharChoice);
 			if(isValidCharName(plCharChoice)) {
 				//Add a player with this character to the array
+<<<<<<< HEAD
 <<<<<<< HEAD
 				players.add(new Player(availableChars.get(plCharChoice), b, i));
 =======
 				players.add(new Player(availableChars.get(plCharChoice), b, this, i));
 >>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
+=======
+				p = new Player(availableChars.get(plCharChoice), b, this, i);
+				players.add(p);
+				System.out.println(String.format("Player %d will be playing as: %s", p.getID(), plCharChoice));
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 				//Remove this character from the available characters
 				availableChars.remove(plCharChoice);
 				//A player has been successfully added
@@ -302,14 +366,12 @@ public class CluedoGame {
 		
 		System.out.println("All players successfully allocated");
 		makeSolution();
-		System.out.println(String.format("DEBUG: This is the answer to the game: %s", solution.toString()));
 		shuffleNDeal();
 		
 		//Print the board with all the players in their starting positions here
 		for(Player p : players) {
 			b.activeBoard[p.getPosition().y][p.getPosition().x] = p.toChar();
 		}
-		b.printBoard();
 		
 		turnCycle(s);
 	}
@@ -334,12 +396,91 @@ public class CluedoGame {
 				iP = (iP+1)%numPlayers;
 				continue;
 			}
-			//Get and do the input for this player
+			//Beginning of turn
+			player.sameRoom = player.inRoom(); //For ensuring they dont reenter the same room for another guess on the same turn
 			turnInput(s, player);
-			
+			//If the player is in a different room to what they started their turn in they can make a guess
+			if(player.inRoom() != player.sameRoom && player.isPlaying()) {
+				askGuess(s, player);
+				
+			}
 			iP = (iP+1)%numPlayers; //Increment the current player, always keeping it within the bounds of the array
 		}
-		System.out.println("DEBUG: No longer playing, doing end of game roundup");
+	}
+	
+	public void askGuess(Scanner s, Player p) {
+		boolean validInput = false;
+		
+		while(!validInput) {
+			
+			System.out.println(String.format("You are in the %s, would you like to make a suggestion? 'YES' 'NO'", p.inRoom()));
+			String input = s.next().toUpperCase();
+			s.nextLine();
+			switch(input) {
+			case "YES":
+				p.guess(s);
+				validInput = true;
+				break;
+			case "NO":
+				validInput = true;
+				break;
+			default:
+				System.out.println("Invalid input, please try again");
+			}
+		}
+	}
+	
+	/**
+	 * Returns true if the suggestion presented was refuted by a player
+	 * Iterates through all the players even if they are out of the game,
+	 * if a player has a card for one of the pieces from the suggestion they
+	 * must show one (their choice) to the player guessing, thus refuting the guess.
+	 * @param suggest
+	 * @return
+	 */
+	public String[] refuteGuess(Scanner s, Suggestion suggest, Player guesser) {
+		boolean valid = false;
+		String input, weapon, room, character;
+		String[] refuter = new String[2];
+		List<String> options = new ArrayList<String>(); //Array holding strings of cards that the player had in their hand
+		int i = 0;
+		//For each player in the game (playing or not)
+		for(Player p : players) {
+			//Find if they have a card from the suggestion
+			room = suggest.getRoom();
+			weapon = suggest.getWeapon();
+			character = suggest.getCharacter();
+			if(p.getHand().contains(room)) {
+				
+				options.add(room);
+			}
+			if(p.getHand().contains(weapon)) {
+				options.add(weapon);
+			}
+			if(p.getHand().contains(character)) {
+				options.add(character);
+			}
+			//If options is not empty ask which card they want to refute
+			if(!options.isEmpty()) {
+				while(!valid ) {
+					System.out.println(String.format("Player %d, which card would you like to refute player %d's guess with?", p.getID(), guesser.getID()));
+					//Print all options
+					for(String o : options) {
+						System.out.print(String.format("\'%s\' ", o));
+					}
+					input = s.nextLine().toUpperCase();
+					//If options contains input its valid
+					if(options.contains(input)) {
+						valid = true;
+						refuter[0] = Integer.toString(p.getID());
+						refuter[1] = input;
+						return refuter;
+					}
+				}
+			}
+			
+		}
+		return refuter;
 	}
 	
 	/**
@@ -366,12 +507,15 @@ public class CluedoGame {
 		
 		//Loop until the player gives a valid input
 		while(!validInput) {
-			System.out.println(String.format("DEBUG: PC: %s player# %d", p.toString(), p.getID()));
-			
 			b.printBoard();
 			
 			//Prompts
-			System.out.print(String.format("Player %d, it is your turn! ",p.getID()));
+			System.out.print(String.format("Player %d, it is your turn! Hand: ",p.getID()));
+			//Print hand
+			for(String str : p.getHand()) {
+				System.out.print(str + ", ");
+			}System.out.println();
+			
 			if(playerRoom != null)System.out.print(String.format("You are currently in the %s ", playerRoom.toString()));
 			System.out.println("What would you like to do?");
 			
@@ -382,6 +526,7 @@ public class CluedoGame {
 			//Print the last option separately so it doesnt have a comma after it and prints the newline
 			System.out.println(turnOptions.get(turnOptions.size()-1));
 			
+<<<<<<< HEAD
 <<<<<<< HEAD
 			//Loop until the player gives a valid input
 			while(!validInput) {
@@ -436,6 +581,12 @@ public class CluedoGame {
 			String input = s.next().toUpperCase(); //Get the input from the user and make it uppercase
 			s.nextLine(); //Consume the end of the line
 			System.out.println(String.format("DEBUG: \'%s\' provided", input));
+=======
+
+			
+			String input = s.next().toUpperCase(); //Get the input from the user and make it uppercase
+			s.nextLine(); //Consume the end of the line
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 			//If the input was valid, find what the input was
 			if(turnOptions.contains(input)) {
 				switch(input) {
@@ -452,7 +603,11 @@ public class CluedoGame {
 					validInput = true;
 					break;
 				case "ACCUSE":
+<<<<<<< HEAD
 					p.accuse();
+=======
+					p.accuse(s);
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 					validInput = true;
 					break;
 				}
@@ -461,7 +616,10 @@ public class CluedoGame {
 				System.out.println(String.format("\'%s\' is an invalid input, please use an option provided.", input));
 			}
 		}
+<<<<<<< HEAD
 >>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
+=======
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	}
 	
 	
@@ -479,11 +637,8 @@ public class CluedoGame {
 		int i = 0;
 		Iterator<Card> cardSetItr = cardSet.iterator();
 		while(cardSetItr.hasNext()) {
-			players.get(i % players.size()).addCard(cardSetItr.next());
+			players.get(i % players.size()).addCard(cardSetItr.next().toString());
 			i++;
-		}
-		for(Player p : players) {
-			System.out.println(p.handToString());
 		}
 	}
 	
@@ -492,27 +647,39 @@ public class CluedoGame {
 	 */
 	private void makeSolution() {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		String w = weaponSet.iterator().next().toString();
 		String r = roomSet.iterator().next().toString();
 		String c = characterSet.iterator().next().toString();
+=======
+		Random rand = new Random();
+		
+		//Randomly pulls a card of each type to make the solution
+		String w = weaponSet.toArray()[rand.nextInt(weaponSet.size())].toString();
+		String r = roomSet.toArray()[rand.nextInt(roomSet.size())].toString();
+		String c = characterSet.toArray()[rand.nextInt(characterSet.size())].toString();
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 
 		weaponSet.remove(new Weapon(w));
-		for(Weapon we: weaponSet){
-			System.out.println("DEBUG weapon: "+we );
-		}
-		roomSet.remove(new Room(r));
-		for(Room ro: roomSet){
-			System.out.println("DEBUG room: "+ro);
-		}	
+		roomSet.remove(new Room(r));	
 		characterSet.remove(new Character(c));
-		for(Character cr: characterSet){
-			System.out.println("DEBUG character: "+cr);
-		}solution = new Suggestion(r,w,c);
-
+		
+		solution = new Suggestion(r,w,c);
 	}
 	
-	public void gameOver() {
+	/**
+	 * Takes the player being updated, their playing field will be true if they won or false if not.
+	 * @param p
+	 */
+	public void gameOver(Player player) {
 		int i = 0;
+		//If the player is playing they won
+		if(player.isPlaying()) {
+			System.out.println(String.format("CONGRATULATIONS! Player %d as %s has won the game!", player.getID(), player.toString()));
+			System.out.println("The Solution was: " + solution.toString());
+			return;
+		}
+		System.out.println(String.format("Sorry player %d, your accusation was incorrect", player.getID()));
 		for(Player p : players){
 			if(p.isPlaying()){
 				i++;
@@ -520,8 +687,15 @@ public class CluedoGame {
 		}
 		if(i <= 1){
 			playing = false;
-			resetGame();
+			for(Player p : players) {
+				if(p.isPlaying()) {
+					System.out.println(String.format("CONGRATULATIONS! Player %d as %s, has won the game by default...", p.getID(), p.toString()));
+					break;
+				}
+			}
+			
 		}
+<<<<<<< HEAD
 =======
 		Weapon w = weaponSet.iterator().next();
 		Room r = roomSet.iterator().next();
@@ -531,8 +705,10 @@ public class CluedoGame {
 		characterSet.remove(c);
 		solution = new Suggestion(w, c , r);
 >>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
+=======
+
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 	}
-	
 	
 	/**
 	 * Returns true if the passed string is a valid name of a character
@@ -549,10 +725,11 @@ public class CluedoGame {
 	 * @return number of players in this game
 	 */
 	private int getNumPlayers(Scanner s) {
-		System.out.println("Welcome to cluedo, please enter the number of people who will be playing (3-6):");
+		System.out.println("Please enter the number of people who will be playing (3-6):");
 		// === Check here that the input from the user is actually an integer ===
 		int num = s.nextInt();
 		s.nextLine();// consume the end of the line
+<<<<<<< HEAD
 <<<<<<< HEAD
 		while(numPlayers > maxPlayers || numPlayers < minPlayers) {
 			System.out.println("That was an invalid number of players, ensure the number of players is between 3 and 6");
@@ -562,6 +739,12 @@ public class CluedoGame {
 			System.out.println("That was an invalid number of players, ensure the number of players is between 3 and 6");
 			num = s.nextInt();
 >>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
+=======
+
+		while(num > maxPlayers || num < minPlayers) {
+			System.out.println("That was an invalid number of players, ensure the number of players is between 3 and 6");
+			num = s.nextInt();
+>>>>>>> b30f7d69d4a3f2e50f360822632b3c05133f3752
 		}
 		System.out.println(String.format("Awesome, there will be %d players this game.", num));
 		return num;
@@ -609,12 +792,6 @@ public class CluedoGame {
 		for(Character c : charactersArray) {
 			availableChars.put(c.toString(), c);
 		}
-		/*availableChars.put("MISS SCARLET", charactersArray[0]);
-		availableChars.put("COLONEL MUSTARD", charactersArray[1]);
-		availableChars.put("MRS WHITE", charactersArray[2]);
-		availableChars.put("THE REVEREND GREEN", charactersArray[3]);
-		availableChars.put("MRS PEACOCK", charactersArray[4]);
-		availableChars.put("PROFESSOR PLUM", charactersArray[5]); */
 	}
 	
 	
