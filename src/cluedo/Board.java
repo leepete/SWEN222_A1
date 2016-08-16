@@ -65,11 +65,14 @@ public class Board {
 	}
 	
 	public Position movePlayer(Position oldP, Position newP, Player p) {
+<<<<<<< HEAD
 		char c = p.toChar();
 		int oldX = oldP.x;
 		int oldY = oldP.y;
 		int newX = newP.x;
 		int newY = newP.y;
+=======
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
 		//Check if we are doing a valid move
 		if(validCorridorMove(newP)) {
 			teleport(p, oldP, newP);
@@ -79,7 +82,12 @@ public class Board {
 			Room r = CluedoGame.placemats.get(oldP);
 			if(r != null) {
 				p.enterRoom(r);
+<<<<<<< HEAD
 				activeBoard[oldY][oldX] = board[oldY][oldX]; //remove the players icon from the placemat
+=======
+				Position space = r.getSpaces()[p.getID()-1];
+				teleport(p, oldP, space);
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
 				printBoard();
 				return newP;
 			}
@@ -93,9 +101,16 @@ public class Board {
 	 * @param oldP
 	 * @param newP
 	 */
+<<<<<<< HEAD
 	private void teleport(Player p, Position oldP, Position newP) {
 		activeBoard[newP.y][newP.x] = p.toChar(); //move the player to the new position
 		activeBoard[oldP.y][oldP.x] = board[oldP.y][oldP.x]; //return the old position back to its original state
+=======
+	public void teleport(Player p, Position oldP, Position newP) {
+		activeBoard[newP.y][newP.x] = p.toChar(); //move the player to the new position
+		activeBoard[oldP.y][oldP.x] = board[oldP.y][oldP.x]; //return the old position back to its original state
+		p.setPosition(newP); //Update the players position
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
 	}
 	
 	/**

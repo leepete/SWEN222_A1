@@ -15,7 +15,11 @@ public class CluedoGame {
 	private List<String> turnOptions = new ArrayList<String>();
 	private final int minPlayers = 1; //DEBUGGING +++++++++++++++++++++++++++++++++++++++++++
 	private final int maxPlayers = 6;
+<<<<<<< HEAD
 	private static final int numRooms = 9;
+=======
+	private final int numRooms = 9;
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
 	
 	//List of the players in the game
 	public List<Player> players = new ArrayList<Player>();
@@ -52,7 +56,11 @@ public class CluedoGame {
 			new Weapon("ROPE"),
 			new Weapon("SPANNER")};
 	
+<<<<<<< HEAD
 	public static  Room[] roomsArray = new Room[numRooms];
+=======
+	public Room[] roomsArray = new Room[numRooms];
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
 	
 	public static Map<Position, Room> placemats = new HashMap<Position, Room>();
 	
@@ -83,6 +91,75 @@ public class CluedoGame {
 	private final Position[] studyPlacemats = {
 			new Position(18, 21)};
 	
+<<<<<<< HEAD
+=======
+	//Arrays holding the positions of where the player characters will be shown while they are in the rooms
+	private final Position[] kitchenSpaces = {
+			new Position(2,3),
+			new Position(3,3),
+			new Position(4,3),
+			new Position(2,5),
+			new Position(3,5),
+			new Position(4,5)};
+	private final Position[] ballSpaces = {
+			new Position(10,4),
+			new Position(11,4),
+			new Position(12,4),
+			new Position(13,4),
+			new Position(12,6),
+			new Position(13,6)};
+	private final Position[] conservatorySpaces = {
+			new Position(21,4),
+			new Position(22,4),
+			new Position(23,4),
+			new Position(21,5),
+			new Position(22,5),
+			new Position(23,5)};
+	private final Position[] diningSpaces = {
+			new Position(3,13),
+			new Position(4,13),
+			new Position(5,13),
+			new Position(3,14),
+			new Position(4,14),
+			new Position(5,14)};
+	private final Position[] billiardSpaces = {
+			new Position(21,10),
+			new Position(22,10),
+			new Position(23,10),
+			new Position(20,12),
+			new Position(21,12),
+			new Position(22,12)};
+	private final Position[] librarySpaces = {
+			new Position(20,16),
+			new Position(22,16),
+			new Position(20,17),
+			new Position(20,18),
+			new Position(21,18),
+			new Position(22,18)};
+	private final Position[] loungeSpaces = {
+			new Position(3,21),
+			new Position(4,21),
+			new Position(5,21),
+			new Position(3,23),
+			new Position(4,23),
+			new Position(5,23)};
+	private final Position[] hallSpaces = {
+			new Position(12,23),
+			new Position(13,23),
+			new Position(14,23),
+			new Position(12,24),
+			new Position(13,24),
+			new Position(14,24)};
+	private final Position[] studySpaces = {
+			new Position(19,23),
+			new Position(23,23),
+			new Position(20,24),
+			new Position(21,24),
+			new Position(22,24),
+			new Position(23,24)};
+	
+	
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
 	public CluedoGame() {
 		populateRooms();
 		this.b = new Board();
@@ -110,6 +187,7 @@ public class CluedoGame {
 		conservatory.setStairRoom(lounge);
 		lounge.setStairRoom(conservatory);
 		
+<<<<<<< HEAD
 		int i = 0;
 		//Put the rooms in the array
 		roomsArray[i] = kitchen;
@@ -147,6 +225,31 @@ public class CluedoGame {
 		roomsArray[i] = diningroom;
 		mapPlacemats(roomsArray[i]);
 		roomsArray[i++].generateDoorLabels();
+=======
+		kitchen.setSpaces(kitchenSpaces);
+		study.setSpaces(studySpaces);
+		conservatory.setSpaces(conservatorySpaces);
+		lounge.setSpaces(loungeSpaces);
+		ballroom.setSpaces(ballSpaces);
+		billiardroom.setSpaces(billiardSpaces);
+		library.setSpaces(librarySpaces);
+		hall.setSpaces(hallSpaces);
+		diningroom.setSpaces(diningSpaces);
+		
+		roomsArray[0] = kitchen;
+		roomsArray[1] = conservatory;
+		roomsArray[2] = study;
+		roomsArray[3] = lounge;
+		roomsArray[4] = ballroom;
+		roomsArray[5] = billiardroom;
+		roomsArray[6] = library;
+		roomsArray[7] = hall;
+		roomsArray[8] = diningroom;
+		for(int i = 0; i < roomsArray.length; i++) {
+			mapPlacemats(roomsArray[i]);
+			roomsArray[i].generateDoorLabels();
+		}
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
 	}
 	
 	/**
@@ -171,7 +274,7 @@ public class CluedoGame {
 		resetGame();
 		
 		//Get number of players
-		getNumPlayers(s);
+		numPlayers = getNumPlayers(s);
 		int i = 1;
 		while(i <= numPlayers) {
 		
@@ -183,7 +286,11 @@ public class CluedoGame {
 			System.out.println("DEBUG: plcharchoice: " + plCharChoice);
 			if(isValidCharName(plCharChoice)) {
 				//Add a player with this character to the array
+<<<<<<< HEAD
 				players.add(new Player(availableChars.get(plCharChoice), b, i));
+=======
+				players.add(new Player(availableChars.get(plCharChoice), b, this, i));
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
 				//Remove this character from the available characters
 				availableChars.remove(plCharChoice);
 				//A player has been successfully added
@@ -216,34 +323,66 @@ public class CluedoGame {
 	 *    delegate to other methods for each of the options above
 	 */
 	public void turnCycle(Scanner s) {
-		boolean validInput = false;
+		
 		int iP = 0; //index of the current player from the players array list
 		//'playing' is a boolean toggled when someone wins the game or when only 1 player remains
 		while(playing) {
 			turnOptions.clear();
-			Player player = players.get(iP); //Sets the current player so we only have to .get once
+			Player player = players.get(iP);
 			 //If the current player is not playing then move to the next player
 			if(!player.isPlaying()) {
 				iP = (iP+1)%numPlayers;
 				continue;
 			}
-			//Add the options to the turnOptions set that are available to the player..
-			//Check if the player is in a room
-			Room playerRoom = player.inRoom();
-			if(playerRoom != null) {
-				if(playerRoom.getStairRoom() != null) {
-					//Make using the stairs an option
-					turnOptions.add("STAIRS");
-				}
-				//Make exiting the room and option
-				turnOptions.add("EXIT"); //NOTE will ask the player what door they wish to exit out of if there is more than one door
-			}
-			else { //Moving is only an option if the player is not in a room
-				turnOptions.add("MOVE");
-			}
-			//Make making an accusation an option
-			turnOptions.add("ACCUSE");
+			//Get and do the input for this player
+			turnInput(s, player);
 			
+			iP = (iP+1)%numPlayers; //Increment the current player, always keeping it within the bounds of the array
+		}
+		System.out.println("DEBUG: No longer playing, doing end of game roundup");
+	}
+	
+	/**
+	 * Asks the player what they would like to do on their turn
+	 * @param s
+	 */
+	public void turnInput(Scanner s, Player p) {
+		turnOptions.clear();
+		boolean validInput = false;
+		Room playerRoom = p.inRoom();
+		if(playerRoom != null) {
+			if(playerRoom.getStairRoom() != null) {
+				//Make using the stairs an option
+				turnOptions.add("STAIRS");
+			}
+			//Make exiting the room and option
+			turnOptions.add("EXIT"); //NOTE will ask the player what door they wish to exit out of if there is more than one door
+		}
+		else { //Moving is only an option if the player is not in a room
+			turnOptions.add("MOVE");
+		}
+		//Make making an accusation an option
+		turnOptions.add("ACCUSE");
+		
+		//Loop until the player gives a valid input
+		while(!validInput) {
+			System.out.println(String.format("DEBUG: PC: %s player# %d", p.toString(), p.getID()));
+			
+			b.printBoard();
+			
+			//Prompts
+			System.out.print(String.format("Player %d, it is your turn! ",p.getID()));
+			if(playerRoom != null)System.out.print(String.format("You are currently in the %s ", playerRoom.toString()));
+			System.out.println("What would you like to do?");
+			
+			//Print options
+			for(int i = 0; i < turnOptions.size()-1; i++) {
+				System.out.print(turnOptions.get(i) + ", ");
+			}
+			//Print the last option separately so it doesnt have a comma after it and prints the newline
+			System.out.println(turnOptions.get(turnOptions.size()-1));
+			
+<<<<<<< HEAD
 			//Loop until the player gives a valid input
 			while(!validInput) {
 				
@@ -292,7 +431,39 @@ public class CluedoGame {
 		}
 		System.out.println("DEBUG: No longer playing, doing end of game roundup");
 		gameOver();
+=======
+			
+			String input = s.next().toUpperCase(); //Get the input from the user and make it uppercase
+			s.nextLine(); //Consume the end of the line
+			System.out.println(String.format("DEBUG: \'%s\' provided", input));
+			//If the input was valid, find what the input was
+			if(turnOptions.contains(input)) {
+				switch(input) {
+				case "MOVE":
+					p.move(s);
+					validInput = true;
+					break;
+				case "STAIRS":
+					p.useStairs();
+					validInput = true;
+					break;
+				case "EXIT":
+					p.exitRoom(s);
+					validInput = true;
+					break;
+				case "ACCUSE":
+					p.accuse();
+					validInput = true;
+					break;
+				}
+			}
+			else { //Else ask again
+				System.out.println(String.format("\'%s\' is an invalid input, please use an option provided.", input));
+			}
+		}
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
 	}
+	
 	
 	/**
 	 * Merges the weapon room and character sets into the card set, 
@@ -320,6 +491,7 @@ public class CluedoGame {
 	 * Draws a Card from the weapon, character and room sets to make up the solution to the game
 	 */
 	private void makeSolution() {
+<<<<<<< HEAD
 		String w = weaponSet.iterator().next().toString();
 		String r = roomSet.iterator().next().toString();
 		String c = characterSet.iterator().next().toString();
@@ -350,6 +522,15 @@ public class CluedoGame {
 			playing = false;
 			resetGame();
 		}
+=======
+		Weapon w = weaponSet.iterator().next();
+		Room r = roomSet.iterator().next();
+		Character c = characterSet.iterator().next();
+		weaponSet.remove(w);
+		roomSet.remove(r);
+		characterSet.remove(c);
+		solution = new Suggestion(w, c , r);
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
 	}
 	
 	
@@ -370,14 +551,20 @@ public class CluedoGame {
 	private int getNumPlayers(Scanner s) {
 		System.out.println("Welcome to cluedo, please enter the number of people who will be playing (3-6):");
 		// === Check here that the input from the user is actually an integer ===
-		numPlayers = s.nextInt();
+		int num = s.nextInt();
 		s.nextLine();// consume the end of the line
+<<<<<<< HEAD
 		while(numPlayers > maxPlayers || numPlayers < minPlayers) {
 			System.out.println("That was an invalid number of players, ensure the number of players is between 3 and 6");
 			numPlayers = s.nextInt();
+=======
+		while(num > maxPlayers || num < minPlayers) {
+			System.out.println("That was an invalid number of players, ensure the number of players is between 3 and 6");
+			num = s.nextInt();
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
 		}
-		System.out.println(String.format("Awesome, there will be %d players this game.", numPlayers));
-		return numPlayers;
+		System.out.println(String.format("Awesome, there will be %d players this game.", num));
+		return num;
 	}
 	
 	/**
@@ -387,7 +574,7 @@ public class CluedoGame {
 		resetCharacters();
 		b.resetBoard();
 		numPlayers = 0;
-		
+		playing = true;
 		resetDeck();
 	}
 	

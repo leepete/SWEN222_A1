@@ -51,4 +51,8 @@ public class Character extends Card{
 	}
 	
 	
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212

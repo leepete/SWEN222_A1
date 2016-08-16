@@ -35,4 +35,8 @@ public class Weapon extends Card{
 			return false;
 		return true;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 87c8cbd1ba02038ce420a2611b31047dc44a8212
