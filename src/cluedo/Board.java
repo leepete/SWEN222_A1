@@ -165,5 +165,21 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * Returns a string - for debugging purposes
+	 */
+	public String toString(){
+		return null;
+//		for(int i = 0; i < activeBoard.length; i++){
+//			for(int j = 0; i < activeBoard[i].length; j++){
+//				activeBoard[i][j] = 'x'; // stacking of chars until the line breaks when increment
+//				System.out.println(activeBoard[i][j]);
+//			}
+//			System.out.println();
+//		}
+//		return activeBoard.toString();
+//		
+	}
+	
 	
 }

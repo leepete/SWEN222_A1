@@ -178,7 +178,7 @@ public class CluedoGame extends JFrame implements ActionListener{
 			new Position(14,14),
 			new Position(14,15)};
 	
-	//GUI STUFF
+	//GUI STUFF - MOVING TO OTHER CLASSES
 	JPanel panel = new JPanel();
 	JButton btnMove = new JButton("Move"); //probably will not need
 	JButton btnSuggest = new JButton("Make Suggestion");
@@ -214,37 +214,35 @@ public class CluedoGame extends JFrame implements ActionListener{
 		panel.add(btnSuggest); //make suggest button false, activate where possible
 		btnSuggest.setEnabled(false);
 		
-		//panel.add(btnAccuse);
+		panel.add(btnAccuse);
 		
-		//panel.add(btnEndTurn);
+		panel.add(btnEndTurn);
 		
 		
 		JPanel playerLabels = new JPanel();
 		playerLabels.setBackground(Color.RED);
 		leftPanel.add(playerLabels, BorderLayout.CENTER);
-		playerLabels.setLayout(new GridLayout(0, 1, 0, 0));
+		playerLabels.setLayout(new GridLayout(0, 0, 0, 0));
 		
+
+		btnSuggest.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//CluedoGame.this.suggest();
+			}
+		});
+		
+		btnAccuse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Game.this.newAccusation();
+			}
+		});
+
+		btnEndTurn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Game.this.board.nextPlayer();
+			}
+		});
 	
-		
-//		panel.add(btnStart); // add button to panel
-//		panel.add(btnMove);
-//		panel.add(btnSuggest);
-//		panel.add(btnAccuse);
-		//checklist tab?
-		//panel.add(t);
-		//panel.add(ta);
-		
-		//add(panel); //add panel to JFrame
-		
-		
-//		btnStart.addActionListener(new ActionListener()){
-//			
-//		}
-//		
-		
-		
-		
-		
 		setVisible(true); //shows JPanel
 		
 		populateRooms();
