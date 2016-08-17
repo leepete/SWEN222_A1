@@ -10,15 +10,27 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel; // container inside JFrame
 import javax.swing.JTextField; //box to type things inside (one line) - can edit
+import javax.swing.border.EmptyBorder;
 import javax.swing.JTextArea; //box to type things inside (multiple lines) - can edit
 import javax.swing.JLabel; //text that you CANNOT edit
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JComboBox; //drop down select box
+import javax.swing.JOptionPane;
 
-public class CluedoGame extends JFrame{
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class CluedoGame extends JFrame implements ActionListener{
 
 	//Array of all the possible inputs from the player during their turn for easy error checking
 	private List<String> turnOptions = new ArrayList<String>();
@@ -168,37 +180,84 @@ public class CluedoGame extends JFrame{
 	
 	//GUI STUFF
 	JPanel panel = new JPanel();
-	JButton btnStart = new JButton("Start");
-	JButton btnMove = new JButton("Move");
-	JButton btnSuggest = new JButton("Suggestion");
+	JButton btnMove = new JButton("Move"); //probably will not need
+	JButton btnSuggest = new JButton("Make Suggestion");
 	JButton btnAccuse = new JButton("Accuse");
+	JButton btnEndTurn = new JButton("End Turn");
 	
-	JTextField t = new JTextField("TextField");
-	JTextArea ta = new JTextArea("Text\nArea", 200,40);
+	//JTextField t = new JTextField("TextField");
+	//JTextArea ta = new JTextArea("Text\nArea", 200,40);
+	
+	
 	
 	public CluedoGame() {
 		//GUI construct
 		super("Cluedo GUI");
-		setSize(600,600); //size of window
-		setResizable(true); //resizable window
+		//this.addActionListener(this);
+		//setSize(600,600); //size of window
+		setBounds(100, 100, 800, 800);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(new BorderLayout(0, 0));
+		setResizable(true); //resizable window - set false when we get the board working
+
 		
-		panel.add(btnStart); // add button to panel
-		panel.add(btnMove);
-		panel.add(btnSuggest);
-		panel.add(btnAccuse);
+		//panel.setLayout(new GridLayout(3,3));
+		JPanel leftPanel = new JPanel();
+		leftPanel.setBackground(Color.BLUE);// remove later
+		leftPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		getContentPane().add(leftPanel, BorderLayout.WEST);
+		leftPanel.setLayout(new BorderLayout(0, 0));
+		
+		leftPanel.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new GridLayout(0, 1,0, 0));
+		
+		panel.add(btnSuggest); //make suggest button false, activate where possible
+		btnSuggest.setEnabled(false);
+		
+		//panel.add(btnAccuse);
+		
+		//panel.add(btnEndTurn);
+		
+		
+		JPanel playerLabels = new JPanel();
+		playerLabels.setBackground(Color.RED);
+		leftPanel.add(playerLabels, BorderLayout.CENTER);
+		playerLabels.setLayout(new GridLayout(0, 1, 0, 0));
+		
+	
+		
+//		panel.add(btnStart); // add button to panel
+//		panel.add(btnMove);
+//		panel.add(btnSuggest);
+//		panel.add(btnAccuse);
 		//checklist tab?
-		panel.add(t);
-		panel.add(ta);
+		//panel.add(t);
+		//panel.add(ta);
 		
-		add(panel); //add panel to JFrame
+		//add(panel); //add panel to JFrame
+		
+		
+//		btnStart.addActionListener(new ActionListener()){
+//			
+//		}
+//		
+		
+		
+		
 		
 		setVisible(true); //shows JPanel
 		
 		populateRooms();
-		this.b = new Board();
+		this.b = new Board();//this
 		Scanner s = new Scanner(System.in);
 		startGame(s);
 	}
+	
+	public void actionPerformed(ActionEvent e){
+		
+	}
+	
+	
 	
 	/**
 	 * Initialises the rooms so that the stairs and placemats are linked to the correct rooms
@@ -639,5 +698,6 @@ public class CluedoGame extends JFrame{
 	public static void main(String[] args) {
 		CluedoGame game = new CluedoGame();
 	}
+
 
 }
